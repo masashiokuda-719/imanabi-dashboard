@@ -5,6 +5,9 @@ import plotly.graph_objs as go
 import dash_auth
 import os
 
+# 外部スタイルシート（Bootstrapなど）を指定
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
 # データ読み込みと前処理
 df = pd.read_csv("imanabitestgraph.csv", encoding="utf-8")
 
@@ -22,6 +25,10 @@ VALID_USERNAME_PASSWORD_PAIRS = {
 
 # Dashアプリ作成
 app = dash.Dash(__name__)
+server = app.server  # サーバー変数を追加
+app.title = "imanabi KPI Dash" 
+
+
 auth = dash_auth.BasicAuth(app, VALID_USERNAME_PASSWORD_PAIRS)
 app.title = "グラフダッシュボード"
 
